@@ -25,7 +25,7 @@ public class AuthController {
     private UserService userService;
 
     @PostMapping("/register")
-    private ResponseEntity<ApiResponse<?>> register(@Valid @RequestBody UserRequestDTO userRequestDTO){
+    public ResponseEntity<ApiResponse<?>> register(@Valid @RequestBody UserRequestDTO userRequestDTO){
 
         UserResponseDTO user = userService.register(userRequestDTO);
 
@@ -39,7 +39,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    private ResponseEntity<ApiResponse<?>> login(@Valid @RequestBody LoginRequestDTO loginRequestDTO){
+    public ResponseEntity<ApiResponse<?>> login(@Valid @RequestBody LoginRequestDTO loginRequestDTO){
     
         LoginResponse response = userService.tryLogin(loginRequestDTO);
 
