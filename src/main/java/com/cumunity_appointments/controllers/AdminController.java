@@ -24,7 +24,7 @@ public class AdminController {
     private ProfessionalService professionalService;
 
     @PostMapping("/professionals/register")
-    private ResponseEntity<ApiResponse<?>> register(@Valid @RequestBody ProfessionalRequestDTO professionalRequestDTO){
+    public ResponseEntity<ApiResponse<?>> register(@Valid @RequestBody ProfessionalRequestDTO professionalRequestDTO){
 
         UserResponseDTO user = professionalService.register(professionalRequestDTO);
 

@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cumunity_appointments.dto.request.AppointmentRequestDTO;
-import com.cumunity_appointments.dto.request.LoginRequestDTO;
 import com.cumunity_appointments.dto.request.UpdateAppointmentDTO;
 import com.cumunity_appointments.dto.response.AppointmentResponseDTO;
-import com.cumunity_appointments.dto.response.LoginResponse;
 import com.cumunity_appointments.entity.AppointmentEntity;
 import com.cumunity_appointments.services.AppointmentService;
 import com.cumunity_appointments.utils.ApiResponse;
