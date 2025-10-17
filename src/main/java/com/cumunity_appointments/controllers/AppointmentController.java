@@ -7,13 +7,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cumunity_appointments.dto.request.AppointmentRequestDTO;
+import com.cumunity_appointments.dto.request.LoginRequestDTO;
+import com.cumunity_appointments.dto.request.UpdateAppointmentDTO;
 import com.cumunity_appointments.dto.response.AppointmentResponseDTO;
+import com.cumunity_appointments.dto.response.LoginResponse;
+import com.cumunity_appointments.entity.AppointmentEntity;
 import com.cumunity_appointments.services.AppointmentService;
 import com.cumunity_appointments.utils.ApiResponse;
 
@@ -69,5 +74,19 @@ public class AppointmentController {
             );
     }
 
+
+    @PutMapping("/update")
+    public ResponseEntity<ApiResponse<?>>registerAppointmen(@Valid @RequestBody UpdateAppointmentDTO updateAppointmentDTO){
+
+        AppointmentEntity response = appointmentService.update(updateAppointmentDTO);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+            .body(ApiResponse.builder()
+                .success(true)
+                .message("exito")
+                .data(response.getStatus())
+                .build()
+            );
+    }
 
 }
