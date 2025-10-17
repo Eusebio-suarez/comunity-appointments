@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cumunity_appointments.dto.request.AppointmentRequestDTO;
@@ -39,6 +40,20 @@ public class AppointmentController {
             );
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ApiResponse<?>> getAppointmentsByProfessionalId(@RequestParam("id") Long id){
+
+        List<AppointmentResponseDTO> appointmens = appointmentService.getByProfessionalId(id);
+
+        return ResponseEntity.status(HttpStatus.OK)
+            .body(ApiResponse.builder()
+                .success(true)
+                .message("exito")
+                .data(appointmens)
+                .build()
+            );
+    }
+
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<?>>registerAppointmen(@Valid @RequestBody AppointmentRequestDTO appointmentRequestDTO){
 
@@ -53,4 +68,6 @@ public class AppointmentController {
                 .build()
             );
     }
+
+
 }

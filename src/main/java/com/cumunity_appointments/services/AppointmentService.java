@@ -33,13 +33,38 @@ public class AppointmentService {
 
         return appointmentRepository.findAll().stream()
             .map(appointment -> AppointmentResponseDTO.builder()
-                .userName(appointment.getProfessional().getUser().getName())
+                .userName(appointment.getUser().getName())
+                .professionalName(appointment.getProfessional().getUser().getName())
                 .date(appointment.getDate())
                 .time(appointment.getTime())
+                .status(appointment.getStatus())
                 .build()
             )
             .toList();
             
+    }
+
+    public List<AppointmentResponseDTO>getByProfessionalId(Long id){
+
+        Optional<ProfessionalEntity> professionalOptional = professionalRepository.findById(id);
+
+        ProfessionalEntity professional = professionalOptional.get();
+
+        if(professionalOptional.isEmpty()){
+            throw  new RuntimeException("no se encontro el prefessional");
+        }
+
+        return appointmentRepository.findByProfessional(professional).stream()
+            .map(appointment -> AppointmentResponseDTO.builder()
+                .userName(appointment.getUser().getName())
+                .professionalName(appointment.getProfessional().getUser().getName())
+                .date(appointment.getDate())
+                .time(appointment.getTime())
+                .status(appointment.getStatus())
+                .build()
+            )
+            .toList();
+
     }
 
     public AppointmentResponseDTO registerAppointment(AppointmentRequestDTO appointmentRequestDTO){

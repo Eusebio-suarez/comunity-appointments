@@ -8,6 +8,8 @@ import com.cumunity_appointments.entity.ProfessionalEntity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
+
 
 
 
@@ -15,4 +17,6 @@ import java.time.LocalTime;
 public interface  AppointmentRepository extends JpaRepository<AppointmentEntity, Long> {
     
     boolean existsByProfessionalAndDateAndTime(ProfessionalEntity professional,LocalDate date,LocalTime time);
+
+    List<AppointmentEntity> findByProfessional(ProfessionalEntity professional);
 }
