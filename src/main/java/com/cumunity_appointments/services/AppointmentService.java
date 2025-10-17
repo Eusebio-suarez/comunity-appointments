@@ -33,6 +33,7 @@ public class AppointmentService {
 
         return appointmentRepository.findAll().stream()
             .map(appointment -> AppointmentResponseDTO.builder()
+                .id(appointment.getId())
                 .userName(appointment.getUser().getName())
                 .professionalName(appointment.getProfessional().getUser().getName())
                 .date(appointment.getDate())
@@ -56,6 +57,7 @@ public class AppointmentService {
 
         return appointmentRepository.findByProfessional(professional).stream()
             .map(appointment -> AppointmentResponseDTO.builder()
+                .id(appointment.getId())
                 .userName(appointment.getUser().getName())
                 .professionalName(appointment.getProfessional().getUser().getName())
                 .date(appointment.getDate())
