@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cumunity_appointments.enums.RolEnum;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +25,7 @@ public class UserEntity {
 
     private String name;
 
+    @Column(unique=true)
     private String email;
 
     private String password;
