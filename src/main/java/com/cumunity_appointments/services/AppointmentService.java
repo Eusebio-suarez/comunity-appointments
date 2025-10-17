@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cumunity_appointments.dto.request.AppointmentRequestDTO;
+import com.cumunity_appointments.dto.request.UpdateAppointmentDTO;
 import com.cumunity_appointments.dto.response.AppointmentResponseDTO;
 import com.cumunity_appointments.entity.AppointmentEntity;
 import com.cumunity_appointments.entity.ProfessionalEntity;
@@ -43,6 +44,24 @@ public class AppointmentService {
             )
             .toList();
             
+    }
+
+
+    public AppointmentEntity update(UpdateAppointmentDTO updateAppointmentDTO){
+
+        Optional<AppointmentEntity> appointmentOptional = appointmentRepository.findById(updateAppointmentDTO.getId());
+
+        if(appointmentOptional.isEmpty()){
+
+            throw  new RuntimeException("no se encontro el la cita");
+        }
+
+        AppointmentEntity appointmentEntity = appointmentOptional.get();
+
+        appointmentEntity.setStatus(updateAppointmentDTO.getStatus());
+
+
+        return appointmentRepository.save(appointmentEntity);
     }
 
     public List<AppointmentResponseDTO>getByProfessionalId(Long id){
