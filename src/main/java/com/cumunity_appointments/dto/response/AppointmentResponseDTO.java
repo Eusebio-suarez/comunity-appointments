@@ -14,6 +14,8 @@ import lombok.Data;
 @Builder
 public class AppointmentResponseDTO {
 
+    private Long id;
+
     private String userName;
 
     private String professionalName;
